@@ -52,9 +52,93 @@ SELECT * from "viewFuncionario";
 
 
 
+CREATE VIEW viewCompras as (select (count(nf.codcliente)) "totalCompras", coalesce(sum(it.quantidade*it.precounitvenda)) "total$", c.nome, c.cpf 
+	from cliente c left outer join notafiscal nf 
+	on c.codcliente = nf.codcliente 
+	right outer join itemvenda it on it.codnotafiscal = nf.codnotafiscal
+	group by c.codcliente
 	
+	
+	) 
+
+select * from viewCompras
 
 
+
+--3 Faça uma consulta que liste o nome dos funcionários e departamentos. 
+--Faça uma view para cada item de listagem pedido:
+select f.nome,d.nome 
+	from funcionario f left outer join departamento d
+	on f.coddepartamento = d.coddepartamento 
+
+
+--a. Apenas funcionários alocados em um departamento e departamento com funcionários.
+
+ CREATE VIEW vwFuncionario1Depto as (select f.nome, d.nome as nomedepto
+	from funcionario f left outer join departamento d
+	on f.coddepartamento = d.coddepartamento 
+	group by d.coddepartamento,f.nome)
+
+select * from vwFuncionario1Depto
+
+
+--b. Todos funcionários e apenas departamentos com funcionários.
+
+
+ CREATE VIEW vwDeptoFuncionarios as (select f.nome, d.nome as nomedepto
+	from funcionario f right outer join departamento d
+	on f.coddepartamento = d.coddepartamento 
+	group by d.coddepartamento,f.nome)
+
+select * from vwDeptoFuncionarios
+
+--c. Apenas funcionários alocados em um departamento e todos os departamentos.
+
+
+ CREATE VIEW vwDeptoFuncionarios as (select f.nome, d.nome as nomedepto
+	from funcionario f left outer join departamento d
+	on f.coddepartamento = d.coddepartamento 
+	group by d.coddepartamento,f.nome)
+
+select * from vwDeptoFuncionarios
+
+
+
+--d. Todos funcionários e todos departamentos.
+--Após criar as views, insira 2 departamentos sem funcionários e 2 funcionários sem vinculo a um departamento e
+--observe as mudanças nas views.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+select * from notafiscal
+select * from funcionario
+select * from cliente
+select * from itemvenda
+select * from departamento
+select * from produto
 
 
 
