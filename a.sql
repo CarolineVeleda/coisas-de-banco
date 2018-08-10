@@ -1,3 +1,5 @@
+
+
 create view "viu" AS
 (select nome,cpf from cliente)
 
@@ -50,18 +52,26 @@ SELECT * from "viewFuncionario";
 --2 Crie uma view que liste o número de compras e o total em 
 --reais comprado por cada cliente (o nome e cpf do cliente)
 
+--parte 1 (quase certo)
+select c.nome,c.cpf,nf.codNotaFiscal, iv.quantidade, iv.precounitvenda
+	from cliente c left outer join NotaFiscal nf 
+	on c.codcliente = nf.codcliente
+	left JOIN ItemVenda iv
+	on iv.codnotafiscal = nf.codnotafiscal
 
 
-CREATE VIEW viewCompras as (select (count(nf.codcliente)) "totalCompras", coalesce(sum(it.quantidade*it.precounitvenda)) "total$", c.nome, c.cpf 
-	from cliente c left outer join notafiscal nf 
-	on c.codcliente = nf.codcliente 
-	right outer join itemvenda it on it.codnotafiscal = nf.codnotafiscal
+--parte 2 (certo)
+select c.nome,c.cpf,count(distinct nf.codnotafiscal), coalesce(sum(iv.quantidade*iv.precounitvenda),0)
+	from cliente c left outer join NotaFiscal nf 
+	on c.codcliente = nf.codcliente
+	left outer JOIN ItemVenda iv
+	on iv.codnotafiscal = nf.codnotafiscal
 	group by c.codcliente
-	
-	
-	) 
 
-select * from viewCompras
+
+
+	
+insert into cliente (nome,cpf,email) values ('fulano compra nada','7352442', 'sonhosbacanas@dreams.com')	
 
 
 
@@ -74,12 +84,9 @@ select f.nome,d.nome
 
 --a. Apenas funcionários alocados em um departamento e departamento com funcionários.
 
- CREATE VIEW vwFuncionario1Depto as (select f.nome, d.nome as nomedepto
-	from funcionario f left outer join departamento d
-	on f.coddepartamento = d.coddepartamento 
-	group by d.coddepartamento,f.nome)
+ CREATE select f.nome, d.nome from funcionario f inner join departamento d
+	on f.coddepartamento = d.coddepartamento
 
-select * from vwFuncionario1Depto
 
 
 --b. Todos funcionários e apenas departamentos com funcionários.
@@ -94,34 +101,31 @@ select * from vwDeptoFuncionarios
 
 --c. Apenas funcionários alocados em um departamento e todos os departamentos.
 
-
- CREATE VIEW vwDeptoFuncionarios as (select f.nome, d.nome as nomedepto
-	from funcionario f left outer join departamento d
-	on f.coddepartamento = d.coddepartamento 
-	group by d.coddepartamento,f.nome)
-
-select * from vwDeptoFuncionarios
-
+select * from funcionario f right outer join departamento d
+	on f.coddepartamento = d.coddepartamento
 
 
 --d. Todos funcionários e todos departamentos.
+
+
+
+select * from funcionario f full outer join departamento d
+	on f.coddepartamento = d.coddepartamento
+
+
 --Após criar as views, insira 2 departamentos sem funcionários e 2 funcionários sem vinculo a um departamento e
 --observe as mudanças nas views.
 
 
 
 
+--5) Considerando a tabela Funcionario, cite uma coluna que é candidata a ter um índice e 
+--uma que não dev e ter um índice. Após crie o índice para a coluna escolhida.
 
+--deve ter indice: cpf, pois ele não se repete
+--não deve: sexo, pois se repete, e há só 2 tipos "m" ou "f". 
 
-
-
-
-
-
-
-
-
-
+create index "IndexFuncionario" ON funcionario(cpf)
 
 
 
