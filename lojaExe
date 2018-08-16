@@ -1,0 +1,13 @@
+-- a) 
+
+SELECT nome,sexo,salario FROM Funcionario where salario >2000
+
+--b) Os funcionários (nome, cpf) com „cadu‟ ou “carla” no nome ou no login (desconsiderar maiúsculas e
+--minúsculas.
+
+SELECT nome,cpf FROM Funcionario
+WHERE lower(nome) like '%carla%' or lower(nome) like '%cadu%' or lower(login) like '%cadu%' or lower(login) like '%carla%';
+
+--c. Fazer o item b para os clientes comparando apenas o nome.
+
+
