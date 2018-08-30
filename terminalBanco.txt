@@ -1,0 +1,122 @@
+$vet = [0=>90, 2 =>"oi"];
+
+function troca(&$sa,&$b){ $aux = $b; $b = $a; $a = $aux;}
+
+echo troca($vet[0],$vet[2]);
+
+
+php > $var_i = 0;
+php > echo $var_i;
+0
+php > echo gettype (5.9);
+double
+php > var_dump($var_i);
+int(0)
+php > echo is_int($var_i);
+1
+php > echo is_string($var_i);
+php > echo "ola mundo!";
+ola mundo!
+php > $vet = array('nome'=> mouso",1.70);
+php " $vet
+php " 
+aluno@Lab01Pav10:~$ php -a
+Interactive mode enabled
+
+php > $vet = array('nome'=>"mouso",1.70);
+php > var_dump($vet);
+array(2) {
+  ["nome"]=>
+  string(5) "mouso"
+  [0]=>
+  float(1.7)
+}
+php > $vet = [0=>90, 2=>"oi"];
+php > function troca(&$sa,&$b){ $aux = $b; $b = $a; $a = $aux;
+php { function troca(&$sa,&$b){ $aux = $b; $b = $a; $a = $aux;}
+php { function troca(&$sa,&$b){ $aux = $b; $b = $a; $a = $aux;}
+aluno@Lab01Pav10:~$ php -a
+Interactive mode enabled
+
+php > 
+aluno@Lab01Pav10:~$ php -a
+Interactive mode enabled
+
+php > function troca(&$sa,&$b){ $aux = $b; $b = $a; $a = $aux;
+php { 
+php { 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+php { 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+php { 
+php { 
+php { 
+php { 
+php { 
+aluno@Lab01Pav10:~$ php -a
+Interactive mode enabled
+
+php > function troca(&$sa,&$b){ $aux = $b; $b = $a; $a = $aux;}
+php > echo $vet
+php > 
+aluno@Lab01Pav10:~$ php -a
+Interactive mode enabled
+
+php > $vet = [0=>90, 2 =>"oi"];
+php > 
+php > function troca(&$sa,&$b){ $aux = $b; $b = $a; $a = $aux;}
+php > 
+php > echo troca($vet[0],$vet[2]);
+PHP Notice:  Undefined variable: a in php shell code on line 1
+php > $vet = [0=>90, 2 =>"oi"];
+php > 
+php > function troca(&$sa,&$b){ $aux = $b; $b = $a; $a = $aux;}
+PHP Fatal error:  Cannot redeclare troca() (previously declared in php shell code:1) in php shell code on line 1
+php > function troca(&$sa,&$b){ $aux = $b; $b = $a; $a = $aux;}
+PHP Fatal error:  Cannot redeclare troca() (previously declared in php shell code:1) in php shell code on line 1
+php > 
+
